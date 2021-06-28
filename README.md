@@ -5,6 +5,8 @@ Quick review InterSystems IRIS SystemPerformance output.
 
 ## Create docker container
 
+The docker container uses Alpine Linux (about 45MB)
+
 - `cd` to folder with source files
 - build container `docker build --no-cache -t sp_check .`
 - run the container, pointing at a pButtons or SystemPerformance file, e.g:
