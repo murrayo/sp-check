@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
+"""
+Check IRIS SystemPerformance or Caché pButtons
 
+Extract useful details to create a performance report.
+Validate common OS and IRIS/Caché configuration settings and show pass, fail
+and suggested fixes.
+
+"""
 import argparse
 
 def mainline(input_file):
