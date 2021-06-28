@@ -3,6 +3,10 @@ Quick review InterSystems IRIS SystemPerformance output.
 
 # system performance check
 
+**If you have suggestions please let me know through issues.** 
+
+Remember the information to act on must be available in pButtons/SystemPerforamnce.
+
 ## Create docker container
 
 The docker container uses Alpine Linux (about 45MB)
