@@ -43,7 +43,7 @@ def mainline(input_file):
             if "overview=" in line:
                 sp_dict["overview"] = (line.split("=")[1]).strip()
 
-            if "Caché Version String: " in line or "Product Version String: " in line:
+            if "Version String: " in line or "Product Version String: " in line:
                 sp_dict["version string"] = (line.split(":", 1)[1]).strip()
 
             if "Profile run " in line:
@@ -336,7 +336,7 @@ def build_log(sp_dict):
             if int(sp_dict["vm.dirty_background_ratio"]) > 5:
                 warn_count += 1
                 sp_dict[
-                    f"warning {warn_count}"] = f"dirty_background_ratio is {sp_dict['vm.dirty_background_ratio']} — Maximum percentage of active memory that can be filled with dirty pages before pdflush begins to write them. InterSystems recommends setting this parameter to 5."
+                    f"warning {warn_count}"] = f"dirty_background_ratio is {sp_dict['vm.dirty_background_ratio']}. InterSystems recommends setting this parameter to 5. This setting is the maximum percentage of active memory that can be filled with dirty pages before pdflush begins to write them."
             else:
                 pass_count += 1
                 sp_dict[f"pass {pass_count}"] = f"dirty_background_ratio is {sp_dict['vm.dirty_background_ratio']}"
@@ -345,7 +345,7 @@ def build_log(sp_dict):
             if int(sp_dict["vm.dirty_ratio"]) > 10:
                 warn_count += 1
                 sp_dict[
-                    f"warning {warn_count}"] = f"dirty_ratio is {sp_dict['vm.dirty_ratio']} — Maximum percentage of total memory that can be filled with dirty pages before processes are forced to write dirty buffers themselves during their time slice instead of being allowed to do more writes. InterSystems recommends setting this parameter to 10. These changes force the Linux pdflush daemon to write out dirty pages more often rather than queue large amounts of updates that can potentially flood the storage with a large burst of updates"
+                    f"warning {warn_count}"] = f"dirty_ratio is {sp_dict['vm.dirty_ratio']}. InterSystems recommends setting this parameter to 10. This setting is the maximum percentage of total memory that can be filled with dirty pages before processes are forced to write dirty buffers themselves during their time slice instead of being allowed to do more writes. These changes force the Linux pdflush daemon to write out dirty pages more often rather than queue large amounts of updates that can potentially flood the storage with a large burst of updates"
             else:
                 pass_count += 1
                 sp_dict[f"pass {pass_count}"] = f"dirty_ratio is {sp_dict['vm.dirty_ratio']}"
