@@ -325,12 +325,13 @@ def build_log(sp_dict):
                     pass_count += 1
                     sp_dict[f"pass {pass_count}"] = f"Kernel shared memory limit is at default"
                 else:
-                    if int(sp_dict["kernel.shmmax"]) < sp_dict["hugepages MB"] * 1024 * 1024:
-                        warn_count += 1
-                        sp_dict[f"warning {warn_count}"] = f"Kernel shared memory limit must be higher than hugepages."
-                    else:
-                        pass_count += 1
-                        sp_dict[f"pass {pass_count}"] = f"Kernel shared memory limit is higher than hugepages"
+                    if "hugepages MB" in sp_dict:
+                        if int(sp_dict["kernel.shmmax"]) < sp_dict["hugepages MB"] * 1024 * 1024:
+                            warn_count += 1
+                            sp_dict[f"warning {warn_count}"] = f"Kernel shared memory limit must be higher than hugepages."
+                        else:
+                            pass_count += 1
+                            sp_dict[f"pass {pass_count}"] = f"Kernel shared memory limit is higher than hugepages"
 
         if "vm.dirty_background_ratio" in sp_dict:
             if int(sp_dict["vm.dirty_background_ratio"]) > 5:
